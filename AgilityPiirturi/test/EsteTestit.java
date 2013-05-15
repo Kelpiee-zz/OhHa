@@ -61,4 +61,7 @@ public class EsteTestit {
         assertEquals(uusiX, testiEste.getX());
         assertEquals(uusiY, testiEste.getY());
     }
+    
+    //testaa kääntö
+    
 }
