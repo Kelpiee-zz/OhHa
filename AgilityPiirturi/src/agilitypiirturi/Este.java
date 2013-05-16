@@ -35,4 +35,8 @@ public class Este {
         this.x = uusiX;
         this.y = uusiY;
     }
+    
+    public void kaanna(int uusiKulma) {
+        this.kulma = uusiKulma;
+    }
 }

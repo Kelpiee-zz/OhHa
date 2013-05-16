@@ -35,6 +35,8 @@ public class EsteTestit {
     
     @Before
     public void setUp() {
+        
+        
     }
     
     @After
@@ -53,7 +55,7 @@ public class EsteTestit {
     }
     
     @Test
-    public void testaaSiirto() {
+    public void testaaSiirto1() {
         int uusiX = 10;
         int uusiY = 10;
         testiEste.siirra(uusiX, uusiY);
@@ -62,6 +64,30 @@ public class EsteTestit {
         assertEquals(uusiY, testiEste.getY());
     }
     
-    //testaa kääntö
+    @Test
+    public void testaaSiirto2() {
+        int uusiX = 3;
+        int uusiY = 14;
+        testiEste.siirra(uusiX, uusiY);
+        
+        assertEquals(uusiX, testiEste.getX());
+        assertEquals(uusiY, testiEste.getY());
+    }
+    
+    @Test
+    public void testaaKaanto1() {
+        int uusiKulma = 45;
+        testiEste.kaanna(uusiKulma);
+        
+        assertEquals(uusiKulma, testiEste.getKulma());
+    }
+    
+    @Test
+    public void testaaKaanto2() {
+        int uusiKulma = 180;
+        testiEste.kaanna(uusiKulma);
+        
+        assertEquals(uusiKulma, testiEste.getKulma());
+    }
     
 }
