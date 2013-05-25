@@ -13,6 +13,8 @@ public class Este {
     private int y;
     private int kulma;
     
+   
+    
     public Este(int x, int y, int kulma) {
         this.x = x;
         this.y = y;
