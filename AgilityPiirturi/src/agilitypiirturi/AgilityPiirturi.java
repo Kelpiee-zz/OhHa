@@ -4,6 +4,8 @@
  */
 package agilitypiirturi;
 
+import Kayttoliittyma.Kayttoliittyma;
+
 /**
  *
  * @author iitu
@@ -15,5 +17,6 @@ public class AgilityPiirturi {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Kayttoliittyma kayttis = new Kayttoliittyma();
     }
 }
