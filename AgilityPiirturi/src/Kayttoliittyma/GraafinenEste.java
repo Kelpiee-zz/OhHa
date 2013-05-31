@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- *
+ * Graafinen versio esteestä
  * @author iitu
  */
 public class GraafinenEste extends Este {
@@ -18,11 +18,14 @@ public class GraafinenEste extends Este {
         super(x, y, kulma);
     }
 
+    /**
+     * Piirretään esteet sinisiksi ovaaleiksi
+     * @param g piirtoon käytettävä Graphics olio
+     */
     public void draw(Graphics g) {
         int x = this.getX();
         int y = this.getY();
 
-        //piirrä este
         g.setColor(Color.black);
         g.fillOval(x- 12, y - 12, 24, 24);
         g.setColor(Color.BLUE);

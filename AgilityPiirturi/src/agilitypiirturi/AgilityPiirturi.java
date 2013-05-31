@@ -11,9 +11,9 @@ import Kayttoliittyma.Kayttoliittyma;
  * @author iitu
  */
 public class AgilityPiirturi {
-
     /**
-     * @param args the command line arguments
+     * Luodaan käyttöliittymä
+     * @param args 
      */
     public static void main(String[] args) {
         // TODO code application logic here

@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
- *
+ * Piirtää kartan ja huolehtii hiiren antamista komennoista
  * @author iitu
  */
 public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotionListener {
@@ -32,6 +32,10 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
     }
 
 
+    /**
+     * Piirtää kartan
+     * @param g piirtoon käytettävä Graphics olio
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -43,7 +47,11 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
 
         g.drawImage(esteLayer, 0, 0, this);
     }
-
+    
+    /**
+     * Kun estettä klikataan, este tulee valituksi
+     * @param me 
+     */
     @Override
     public void mouseClicked(MouseEvent me) {
         valittu = kartta.valitseGraafinenEste(me.getX(), me.getY());
@@ -52,7 +60,11 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
             System.out.println("moi");
         }
     }
-
+    
+    /**
+     * Kun estettä painetaan, este tulee valituksi
+     * @param me 
+     */
     @Override
     public void mousePressed(MouseEvent me) {
         valittu = kartta.valitseGraafinenEste(me.getX(), me.getY());
@@ -61,12 +73,20 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
             System.out.println("moi");
         }
     }
-
+    
+    /**
+     * Kun esteen painaminen lopetetaan, valinta poistuu
+     * @param me 
+     */
     @Override
     public void mouseReleased(MouseEvent me) {
         valittu = null;
     }
 
+    /**
+     * Kun estettä raahataan, esteen koordinaatit muuttuvat ja kartta uudelleen piirretään
+     * @param me 
+     */
     @Override
     public void mouseDragged(MouseEvent me) {
         if (valittu != null) {

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Pitää kirjaa kaikista esteistä
  * @author iitu
  */
 
@@ -20,11 +20,17 @@ public class EsteKartta {
         esteet = new ArrayList<Este>();
         etaisyys = 10;
     }
-    
+    /**
+     * Lisätään este esteet-listaan
+     * @param este 
+     */
     public void lisaaEste(Este este) {
         esteet.add(este);
     }
-    
+    /**
+     * Poistetaan este listalta
+     * @param poistettava 
+     */
     public void poistaEste(Este poistettava) {
         int poistettavanIndeksi = -1;
         
@@ -38,7 +44,14 @@ public class EsteKartta {
             esteet.remove(poistettavanIndeksi);
         }
     }
-    
+    /**
+     * Valitaan tietty este s.e. este valitaan, 
+     * jos annetusta pisteestä sijaitsee este vähintään 10 pikselin (etaisyys) päässä.
+     * Muuten ei palauteta mitään.
+     * @param x
+     * @param y
+     * @return 
+     */
     public Este valitseEste(int x, int y) {
        
         for (Este este : esteet) {
@@ -53,6 +66,10 @@ public class EsteKartta {
         return null;
     }
     
+    /**
+     * Palautetaan koko lista esteistä.
+     * @return 
+     */
     public ArrayList<Este> getEsteet() {
         return esteet;
     }

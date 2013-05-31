@@ -8,12 +8,12 @@ package Kayttoliittyma;
 import javax.swing.JFrame;
 
 /**
- *
+ * Luo graafisen käyttöliittymän
  * @author iitu
  */
 public class Kayttoliittyma extends JFrame {
     private KarttaPiirturi kartta;
-
+    
     public Kayttoliittyma() {
         super("AgilityPiirturi");
         kartta = new KarttaPiirturi();
