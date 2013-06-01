@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 /**
  * Piirtää kartan ja huolehtii hiiren antamista komennoista
+ *
  * @author iitu
  */
 public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotionListener {
@@ -22,18 +23,15 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
 
     public KarttaPiirturi() {
         kartta = new GraafinenEsteKartta();
-        kartta.lisaaEste(new GraafinenEste(50, 50, 90));
-        kartta.lisaaEste(new GraafinenEste(100, 300, 90));
-        
         valittu = null;
-        
+
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
 
-
     /**
      * Piirtää kartan
+     *
      * @param g piirtoon käytettävä Graphics olio
      */
     @Override
@@ -47,36 +45,34 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
 
         g.drawImage(esteLayer, 0, 0, this);
     }
-    
+
     /**
-     * Kun estettä klikataan, este tulee valituksi
-     * @param me 
+     * Kun estettä klikataan, luodaan klikattuun pisteeseen uusi este
+     *
+     * @param me
      */
     @Override
     public void mouseClicked(MouseEvent me) {
-        valittu = kartta.valitseGraafinenEste(me.getX(), me.getY());
-        
-        if (valittu != null) {
-            System.out.println("moi");
-        }
+        GraafinenEste uusiEste = new GraafinenEste(me.getX(), me.getY(), 0);
+        kartta.lisaaEste(uusiEste);
+
+        this.repaint();
     }
-    
+
     /**
      * Kun estettä painetaan, este tulee valituksi
-     * @param me 
+     *
+     * @param me
      */
     @Override
     public void mousePressed(MouseEvent me) {
         valittu = kartta.valitseGraafinenEste(me.getX(), me.getY());
-        
-        if (valittu != null) {
-            System.out.println("moi");
-        }
     }
-    
+
     /**
      * Kun esteen painaminen lopetetaan, valinta poistuu
-     * @param me 
+     *
+     * @param me
      */
     @Override
     public void mouseReleased(MouseEvent me) {
@@ -84,19 +80,17 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
     }
 
     /**
-     * Kun estettä raahataan, esteen koordinaatit muuttuvat ja kartta uudelleen piirretään
-     * @param me 
+     * Kun estettä raahataan, esteen koordinaatit muuttuvat ja kartta uudelleen
+     * piirretään
+     *
+     * @param me
      */
     @Override
     public void mouseDragged(MouseEvent me) {
         if (valittu != null) {
             valittu.siirra(me.getX(), me.getY());
         }
-        
-        this.repaint();
-    }
 
-    public void graphChanged() {
         this.repaint();
     }
 
