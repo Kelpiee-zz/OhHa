@@ -4,6 +4,7 @@
  */
 package Kayttoliittyma;
 
+import Esteet.*;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,9 +22,16 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
     private GraafinenEsteKartta kartta;
     private GraafinenEste valittu;
 
+    private enum EsteLaji {
+
+        Aita, Putki
+    }
+    private EsteLaji valittuTyyppi;
+
     public KarttaPiirturi() {
         kartta = new GraafinenEsteKartta();
         valittu = null;
+        valittuTyyppi = EsteLaji.Aita;
 
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
@@ -53,7 +61,7 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
      */
     @Override
     public void mouseClicked(MouseEvent me) {
-        GraafinenEste uusiEste = new GraafinenEste(me.getX(), me.getY(), 0);
+        GraafinenEste uusiEste = luoEsteTyypinMukaan(me.getX(), me.getY(), 0);
         kartta.lisaaEste(uusiEste);
 
         this.repaint();
@@ -107,5 +115,37 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
     @Override
     public void mouseMoved(MouseEvent me) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Tehdään uusi este halutun tyypin mukaan
+     * @param x
+     * @param y
+     * @param kulma
+     * @return 
+     */
+    public GraafinenEste luoEsteTyypinMukaan(int x, int y, int kulma) {
+        if (valittuTyyppi == EsteLaji.Aita) {
+            return new Aita(x, y, kulma);
+        } else if (valittuTyyppi == EsteLaji.Putki) {
+            return new Putki(x, y, kulma);
+        }
+        
+        return new GraafinenEste(x, y, kulma);
+    }
+    
+    /**
+     * Muutetaan halutuksi tyypiksi putkieste
+     * Tämä ja muutama muu siirtynee omaan luokkaansa, täytyy hahmotella
+     */
+    public void kaytaPutkea() {
+        valittuTyyppi = EsteLaji.Putki;
+    }
+    
+    /**
+     * Muutetaan halutuksi tyypiksi aitaeste
+     */
+    public void kaytaAitaa() {
+        valittuTyyppi = EsteLaji.Aita;
     }
 }
