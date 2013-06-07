@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Kayttoliittyma;
 
 import Esteet.EsteLuoja;
@@ -11,9 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-
 /**
  * Luodaan menu ohjelmalle
+ *
  * @author iitu
  */
 public class KarttaMenu extends JPanel {
@@ -23,8 +19,10 @@ public class KarttaMenu extends JPanel {
     private JButton aEsteNappi;
 
     /**
-     * JButtonit kutsuvat EsteLuojan metodeita, joilla tallennetaan halutun esteen tyyppi
-     * @param esteLuoja 
+     * JButtonit kutsuvat EsteLuojan metodeita, joilla tallennetaan halutun
+     * esteen tyyppi
+     *
+     * @param esteLuoja
      */
     public KarttaMenu(final EsteLuoja esteLuoja) {
 
@@ -46,7 +44,7 @@ public class KarttaMenu extends JPanel {
                 esteLuoja.luoPutkia();
             }
         });
-        
+
         aEsteNappi = new JButton("Putki");
         Nappuloita.initButton(aEsteNappi, 150, 25, "A-este", new ActionListener() {
             @Override
