@@ -89,8 +89,4 @@ public class EsteTestit {
 
         assertEquals(uusiKulma, testiEste.getKulma());
     }
-    
-    //testaa nollalista
-    //testaa jos este ulkopuolella
-    //testaa esteiden tyyppejä
 }

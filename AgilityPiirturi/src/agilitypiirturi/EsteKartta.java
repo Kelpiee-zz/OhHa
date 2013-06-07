@@ -74,5 +74,9 @@ public class EsteKartta {
         return esteet;
     }
     
+    public void poistaKaikkiEsteet() {
+        esteet.removeAll(esteet);
+    }
+    
     
 }

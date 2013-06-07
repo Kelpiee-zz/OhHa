@@ -6,7 +6,7 @@ package Kayttoliittyma;
 
 import agilitypiirturi.Este;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  * Graafinen versio esteestä
@@ -22,7 +22,7 @@ public class GraafinenEste extends Este {
      * Piirretään esteet sinisiksi ovaaleiksi
      * @param g piirtoon käytettävä Graphics olio
      */
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
         int x = this.getX();
         int y = this.getY();
 

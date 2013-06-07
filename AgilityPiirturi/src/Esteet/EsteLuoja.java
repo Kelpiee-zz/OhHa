@@ -5,7 +5,6 @@
 package Esteet;
 
 import Kayttoliittyma.GraafinenEste;
-import Kayttoliittyma.KarttaPiirturi;
 
 /**
  * EsteLuoja pitää kirjaa valitun esteen tyypistä Oletuksena aita

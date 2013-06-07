@@ -6,7 +6,7 @@ package Esteet;
 
 import Kayttoliittyma.GraafinenEste;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  * AEste, väriltään sininen
@@ -18,8 +18,12 @@ public class AEste extends GraafinenEste {
         super(x,y,kulma);
     }
     
+    /**
+     * Piirtää A-esteiksi sinisiä palloja
+     * @param g 
+     */
     @Override
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
         int x = this.getX();
         int y = this.getY();
 

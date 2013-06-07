@@ -47,4 +47,8 @@ public class GraafinenEsteKartta extends EsteKartta {
     public GraafinenEste valitseGraafinenEste(int x, int y) {
         return (GraafinenEste) super.valitseEste(x, y);
     }
+    
+    public void poistaKaikkiGraafisetEsteet() {
+        super.poistaKaikkiEsteet();
+    }
 }

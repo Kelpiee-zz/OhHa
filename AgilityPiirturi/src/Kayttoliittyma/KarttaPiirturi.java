@@ -8,6 +8,7 @@ import Esteet.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -48,7 +49,8 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
 
         Graphics2D pohjaLayerG = (Graphics2D) pohjaLayer.getGraphics();
         Graphics2D esteLayerG = (Graphics2D) esteLayer.getGraphics();
-
+        esteLayerG.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        
         pohjaLayerG.setColor(Color.WHITE);
         pohjaLayerG.fillRect(0, 0, this.getWidth(), this.getHeight());
 
@@ -70,14 +72,18 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
 
     /**
      * Kun estettä klikataan, luodaan klikattuun pisteeseen uusi este
-     *
+     * Jos este on jo valittuna, sitä klikkailemalla saadaan se kääntymään 5 astetta/klick
      * @param me
      */
     @Override
     public void mouseClicked(MouseEvent me) {
-        GraafinenEste uusiEste = esteLuoja.luoEste(me.getX(), me.getY(), 0);
-        kartta.lisaaEste(uusiEste);
-
+        if (kartta.valitseGraafinenEste(me.getX(), me.getY()) == null) {
+            GraafinenEste uusiEste = esteLuoja.luoEste(me.getX(), me.getY(), 0);
+            kartta.lisaaEste(uusiEste);
+        } else {
+            GraafinenEste este = kartta.valitseGraafinenEste(me.getX(), me.getY());
+            este.kaanna(este.getKulma()+5);
+        }
         this.repaint();
     }
 
