@@ -4,8 +4,8 @@
  */
 package Kayttoliittyma;
 
+import Esteet.EsteLuoja;
 import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 /**
@@ -17,11 +17,13 @@ public class Kayttoliittyma extends JFrame {
 
     private KarttaPiirturi kartta;
     private KarttaMenu menu;
+    private EsteLuoja esteLuoja;
 
     public Kayttoliittyma() {
         super("AgilityPiirturi");
-        kartta = new KarttaPiirturi();
-        menu = new KarttaMenu(kartta);
+        esteLuoja = new EsteLuoja();
+        kartta = new KarttaPiirturi(esteLuoja);
+        menu = new KarttaMenu(esteLuoja);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addMouseListener(kartta);

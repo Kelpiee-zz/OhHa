@@ -5,7 +5,9 @@
 package Kayttoliittyma;
 
 import Esteet.*;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -21,17 +23,12 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
 
     private GraafinenEsteKartta kartta;
     private GraafinenEste valittu;
+    private EsteLuoja esteLuoja;
 
-    private enum EsteLaji {
-
-        Aita, Putki
-    }
-    private EsteLaji valittuTyyppi;
-
-    public KarttaPiirturi() {
+    public KarttaPiirturi(EsteLuoja esteLuoja) {
         kartta = new GraafinenEsteKartta();
         valittu = null;
-        valittuTyyppi = EsteLaji.Aita;
+        this.esteLuoja = esteLuoja;
 
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
@@ -45,13 +42,30 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
+        BufferedImage pohjaLayer = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
         BufferedImage esteLayer = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
+        Graphics2D pohjaLayerG = (Graphics2D) pohjaLayer.getGraphics();
+        Graphics2D esteLayerG = (Graphics2D) esteLayer.getGraphics();
+
+        pohjaLayerG.setColor(Color.WHITE);
+        pohjaLayerG.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+        int viivaTiheys = 25;
+
+        pohjaLayerG.setColor(Color.GRAY.brighter());
+        for (int y = 0; y < this.getWidth(); y += viivaTiheys) {
+            pohjaLayerG.drawLine(0, y, this.getWidth(), y);
+            pohjaLayerG.drawLine(y, 0, y, this.getHeight());
+        }
         for (GraafinenEste este : kartta.getGraafisetEsteet()) {
-            este.draw(g);
+            este.draw(esteLayerG);
         }
 
+        g.drawImage(pohjaLayer, 0, 0, this);
         g.drawImage(esteLayer, 0, 0, this);
+
     }
 
     /**
@@ -61,7 +75,7 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
      */
     @Override
     public void mouseClicked(MouseEvent me) {
-        GraafinenEste uusiEste = luoEsteTyypinMukaan(me.getX(), me.getY(), 0);
+        GraafinenEste uusiEste = esteLuoja.luoEste(me.getX(), me.getY(), 0);
         kartta.lisaaEste(uusiEste);
 
         this.repaint();
@@ -115,37 +129,5 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
     @Override
     public void mouseMoved(MouseEvent me) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Tehdään uusi este halutun tyypin mukaan
-     * @param x
-     * @param y
-     * @param kulma
-     * @return 
-     */
-    public GraafinenEste luoEsteTyypinMukaan(int x, int y, int kulma) {
-        if (valittuTyyppi == EsteLaji.Aita) {
-            return new Aita(x, y, kulma);
-        } else if (valittuTyyppi == EsteLaji.Putki) {
-            return new Putki(x, y, kulma);
-        }
-        
-        return new GraafinenEste(x, y, kulma);
-    }
-    
-    /**
-     * Muutetaan halutuksi tyypiksi putkieste
-     * Tämä ja muutama muu siirtynee omaan luokkaansa, täytyy hahmotella
-     */
-    public void kaytaPutkea() {
-        valittuTyyppi = EsteLaji.Putki;
-    }
-    
-    /**
-     * Muutetaan halutuksi tyypiksi aitaeste
-     */
-    public void kaytaAitaa() {
-        valittuTyyppi = EsteLaji.Aita;
     }
 }

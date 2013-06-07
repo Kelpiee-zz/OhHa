@@ -4,47 +4,60 @@
  */
 package Kayttoliittyma;
 
+import Esteet.EsteLuoja;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-/**
- * Luodaan menu ohjelmalle
- */
 
 /**
- *
+ * Luodaan menu ohjelmalle
  * @author iitu
  */
 public class KarttaMenu extends JPanel {
 
     private JButton aitaNappi;
     private JButton putkiNappi;
+    private JButton aEsteNappi;
 
-    public KarttaMenu(final KarttaPiirturi kartta) {
+    /**
+     * JButtonit kutsuvat EsteLuojan metodeita, joilla tallennetaan halutun esteen tyyppi
+     * @param esteLuoja 
+     */
+    public KarttaMenu(final EsteLuoja esteLuoja) {
 
-        BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        GridLayout layout = new GridLayout(3, 1);
         this.setLayout(layout);
 
         aitaNappi = new JButton("Aita");
-        aitaNappi.addActionListener(new ActionListener() {
+        Nappuloita.initButton(aitaNappi, 150, 25, "Aita", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                kartta.kaytaAitaa();;
+                esteLuoja.luoAitoja();
             }
         });
+
         putkiNappi = new JButton("Putki");
-        putkiNappi.addActionListener(new ActionListener() {
+        Nappuloita.initButton(putkiNappi, 150, 25, "Putki", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                kartta.kaytaPutkea();
+                esteLuoja.luoPutkia();
+            }
+        });
+        
+        aEsteNappi = new JButton("Putki");
+        Nappuloita.initButton(aEsteNappi, 150, 25, "A-este", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                esteLuoja.luoAEsteita();
             }
         });
 
         this.add(aitaNappi);
         this.add(putkiNappi);
+        this.add(aEsteNappi);
 
     }
 }
