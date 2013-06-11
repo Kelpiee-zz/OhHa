@@ -4,7 +4,6 @@
  */
 package Kayttoliittyma;
 
-import Esteet.EsteLuoja;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,14 +45,7 @@ public class ToimintaMenu extends JPanel {
                 piirturi.repaint();
             }
         });
-//
-//        aEsteNappi = new JButton("Putki");
-//        Nappuloita.initButton(aEsteNappi, 150, 25, "A-este", new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                esteLuoja.luoAEsteita();
-//            }
-//        });
+
 
         this.add(poistaValittu);
         this.add(poistaKaikki);
