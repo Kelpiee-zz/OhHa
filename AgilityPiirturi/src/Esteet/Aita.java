@@ -35,21 +35,27 @@ public class Aita extends GraafinenEste {
     public void draw(Graphics2D g) {
         int x = this.getX();
         int y = this.getY();
-        int leveys = 50;
-        int korkeus = 10;
+        int aidanLeveys = 35;
+        int aidanKorkeus = 3;
         
+        int kuvanKoko = 100;
+        
+        AffineTransform p = new AffineTransform();
+        p.translate(kuvanKoko/2.0, kuvanKoko/2.0);
+        p.rotate(Math.toRadians(this.getKulma()));
+        p.translate(-aidanLeveys/2.0, -aidanKorkeus/2.0);
+  
         AffineTransform t = new AffineTransform();
-        t.translate(x, y);
-        t.rotate(Math.toRadians(this.getKulma()));
-        t.translate(-leveys/2, -korkeus/2);
-        
-        BufferedImage kuva = new BufferedImage(leveys, 3, BufferedImage.TYPE_INT_ARGB);
+        t.translate(this.getX() - kuvanKoko / 2.0, this.getY() - kuvanKoko/ 2.0);
+
+        BufferedImage kuva = new BufferedImage(kuvanKoko, kuvanKoko, BufferedImage.TYPE_INT_ARGB);
         Graphics2D kuvaG = (Graphics2D) kuva.getGraphics();
         
-//        kuvaG.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        kuvaG.setTransform(p);
+        kuvaG.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         kuvaG.setColor(Color.black);
-        kuvaG.fillRect(0, 0, 50, 3);
-        
+        kuvaG.fillRect(0, 0, aidanLeveys, aidanKorkeus);
+
         g.drawImage(kuva, t, null);
 
     }

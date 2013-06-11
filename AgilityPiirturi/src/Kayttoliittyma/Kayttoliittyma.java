@@ -18,13 +18,17 @@ public class Kayttoliittyma extends JFrame {
     private KarttaPiirturi kartta;
     private KarttaMenu menu;
     private EsteLuoja esteLuoja;
+    private ToimintaMenu valikko;
+    private GraafinenEsteKartta esteKartta;
 
     public Kayttoliittyma() {
         super("AgilityPiirturi");
         esteLuoja = new EsteLuoja();
-        kartta = new KarttaPiirturi(esteLuoja);
+        esteKartta = new GraafinenEsteKartta();
+        kartta = new KarttaPiirturi(esteLuoja, esteKartta);
         menu = new KarttaMenu(esteLuoja);
-
+        valikko = new ToimintaMenu(esteKartta, kartta);
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addMouseListener(kartta);
         addMouseMotionListener(kartta);
@@ -33,6 +37,7 @@ public class Kayttoliittyma extends JFrame {
         this.setLayout(layout);
         
         add(menu, BorderLayout.WEST);
+        add(valikko, BorderLayout.NORTH);
         add(kartta);
         pack();
         setSize(700, 500);

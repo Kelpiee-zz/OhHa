@@ -32,18 +32,17 @@ public class Putki extends GraafinenEste {
      */
     @Override
     public void draw(Graphics2D g) {
-        int korkeus = 40;
-        int leveys = 65;
+        int koko = 60;
 
-        int x1 = 6;
-        int y1 = korkeus - 5;
-        int x2 = x1 + 50;
+        int x1 = 15;
+        int y1 = koko - 15;
+        int x2 = x1 + 35;
         int y2 = y1;
 
         int cx1 = x1;
-        int cy1 = y2 - korkeus;
+        int cy1 = y2 - 25;
         int cx2 = x2;
-        int cy2 = y2 - korkeus;
+        int cy2 = y2 - 25;
 
 
 
@@ -57,19 +56,19 @@ public class Putki extends GraafinenEste {
 //        p.translate(this.getX(), this.getY());
 //        p.translate(-leveys / 2, -korkeus / 2);
 
-        p.translate(leveys / 2, korkeus / 2);
+        p.translate(koko / 2, koko / 2);
         p.rotate(Math.toRadians(this.getKulma()));
-        p.translate(-leveys / 2, -(korkeus / 2 - 20));
+        p.translate(-koko / 2, -koko / 2);
 
         AffineTransform t = new AffineTransform();
-        t.translate(this.getX() - leveys / 2, this.getY() - korkeus / 2);
+        t.translate(this.getX() - koko / 2, this.getY() - koko / 2);
 
 //        t.rotate(Math.toRadians(this.getKulma()));
 
-        BufferedImage kuva = new BufferedImage(leveys + 20, leveys + 20, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage kuva = new BufferedImage(koko, koko, BufferedImage.TYPE_INT_ARGB);
         Graphics2D kuvaG = (Graphics2D) kuva.getGraphics();
 
-//        kuvaG.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        kuvaG.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         kuvaG.setColor(Color.BLACK);
         kuvaG.setStroke(reunus);
         kuvaG.setTransform(p);
@@ -77,7 +76,7 @@ public class Putki extends GraafinenEste {
 
         CubicCurve2D q = new CubicCurve2D.Float();
         q.setCurve(x1, y1, cx1, cy1, cx2, cy2, x2, y2);
-
+        
         kuvaG.draw(q);
 
         g.drawImage(kuva, t, null);

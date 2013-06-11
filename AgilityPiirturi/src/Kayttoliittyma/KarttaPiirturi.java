@@ -23,12 +23,10 @@ import javax.swing.JPanel;
 public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotionListener {
 
     private GraafinenEsteKartta kartta;
-    private GraafinenEste valittu;
     private EsteLuoja esteLuoja;
 
-    public KarttaPiirturi(EsteLuoja esteLuoja) {
-        kartta = new GraafinenEsteKartta();
-        valittu = null;
+    public KarttaPiirturi(EsteLuoja esteLuoja, GraafinenEsteKartta kartta) {
+        this.kartta = kartta;
         this.esteLuoja = esteLuoja;
 
         this.addMouseListener(this);
@@ -94,7 +92,7 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
      */
     @Override
     public void mousePressed(MouseEvent me) {
-        valittu = kartta.valitseGraafinenEste(me.getX(), me.getY());
+        kartta.valitseGraafinenEste(me.getX(), me.getY());
     }
 
     /**
@@ -104,7 +102,7 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
      */
     @Override
     public void mouseReleased(MouseEvent me) {
-        valittu = null;
+        this.repaint();
     }
 
     /**
@@ -115,8 +113,11 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
      */
     @Override
     public void mouseDragged(MouseEvent me) {
-        if (valittu != null) {
-            valittu.siirra(me.getX(), me.getY());
+        kartta.valitseEste(me.getX(), me.getY());
+        
+        if (kartta.getViimeisinValittu() != null) {
+            kartta.getViimeisinValittu().siirra(me.getX(), me.getY());
+            
         }
 
         this.repaint();

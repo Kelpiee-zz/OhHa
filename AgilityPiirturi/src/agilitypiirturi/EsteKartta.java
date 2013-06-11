@@ -5,7 +5,6 @@
 package agilitypiirturi;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Pitää kirjaa kaikista esteistä
@@ -15,10 +14,12 @@ import java.util.List;
 public class EsteKartta {
     private ArrayList<Este> esteet;
     private final int etaisyys;
+    private Este viimeisinValittu;
     
     public EsteKartta() {
         esteet = new ArrayList<Este>();
         etaisyys = 10;
+        viimeisinValittu = null;
     }
     /**
      * Lisätään este esteet-listaan
@@ -27,6 +28,7 @@ public class EsteKartta {
     public void lisaaEste(Este este) {
         esteet.add(este);
     }
+    
     /**
      * Poistetaan este listalta
      * @param poistettava 
@@ -41,9 +43,11 @@ public class EsteKartta {
         }
         
         if (poistettavanIndeksi >= 0) {
+            viimeisinValittu = null;
             esteet.remove(poistettavanIndeksi);
         }
     }
+    
     /**
      * Valitaan tietty este s.e. este valitaan, 
      * jos annetusta pisteestä sijaitsee este vähintään 10 pikselin (etaisyys) päässä.
@@ -59,6 +63,7 @@ public class EsteKartta {
             int dy = este.getY() - y;
             
             if (Math.sqrt(dx*dx + dy*dy) <= etaisyys) {
+                viimeisinValittu = este;
                 return este;
             }
         }
@@ -75,8 +80,16 @@ public class EsteKartta {
     }
     
     public void poistaKaikkiEsteet() {
+        viimeisinValittu = null;
         esteet.removeAll(esteet);
     }
     
+    public Este getViimeisinValittu() {
+        return viimeisinValittu;
+    }
+    
+    public void nollaaViimeisinValittu() {
+        viimeisinValittu = null;
+    }
     
 }

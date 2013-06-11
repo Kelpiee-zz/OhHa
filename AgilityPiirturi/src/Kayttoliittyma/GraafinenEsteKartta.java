@@ -51,4 +51,6 @@ public class GraafinenEsteKartta extends EsteKartta {
     public void poistaKaikkiGraafisetEsteet() {
         super.poistaKaikkiEsteet();
     }
+    
+    
 }
