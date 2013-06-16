@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -20,17 +22,23 @@ import javax.swing.JPanel;
  *
  * @author iitu
  */
-public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotionListener {
+public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
 
     private GraafinenEsteKartta kartta;
     private EsteLuoja esteLuoja;
-
+    private boolean ctrlPainettu;
+    private boolean shiftPainettu;
+    
     public KarttaPiirturi(EsteLuoja esteLuoja, GraafinenEsteKartta kartta) {
         this.kartta = kartta;
         this.esteLuoja = esteLuoja;
 
+        ctrlPainettu = false;
+        shiftPainettu = false;
+        
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
+        this.addKeyListener(this);
     }
 
     /**
@@ -70,19 +78,24 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
 
     /**
      * Kun estettä klikataan, luodaan klikattuun pisteeseen uusi este
-     * Jos este on jo valittuna, sitä klikkailemalla saadaan se kääntymään 5 astetta/klick
+     * Jos este on jo valittuna, sitä klikkailemalla saadaan se kääntymään:
+     * - normaalisti este kääntyy 5 astetta myötäpäivään
+     * - Ctrl pohjassa este kääntyy vastapäivään
+     * - Shift pohjassa este kääntyy 30 astetta 5:n sijaan
      * @param me
      */
     @Override
     public void mouseClicked(MouseEvent me) {
-        
         if (kartta.valitseGraafinenEste(me.getX(), me.getY()) == null) {
             GraafinenEste uusiEste = esteLuoja.luoEste(me.getX(), me.getY(), 0);
 
             kartta.lisaaEste(uusiEste);
         } else {
+            int kaantoKulma = shiftPainettu ? 30 : 5;
+            kaantoKulma = ctrlPainettu ? -kaantoKulma : kaantoKulma;
+            
             GraafinenEste este = kartta.valitseGraafinenEste(me.getX(), me.getY());
-            este.kaanna(este.getKulma()+5);
+            este.kaanna(este.getKulma()+kaantoKulma);
         }
         this.repaint();
     }
@@ -126,6 +139,9 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseEntered(MouseEvent me) {
+        if (!this.isFocusOwner()) {
+            this.requestFocusInWindow();
+        }
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -137,5 +153,29 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
     @Override
     public void mouseMoved(MouseEvent me) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    /**
+     * Kuunnellaan näppäimistön painallukset
+     * @param ke 
+     */
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        ctrlPainettu = ke.isControlDown();
+        shiftPainettu = ke.isShiftDown();
+    }
+
+    /**
+     * Kuunnellaan näppäimistön vapauttaminen
+     * @param ke 
+     */
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        ctrlPainettu = ke.isControlDown();
+        shiftPainettu = ke.isShiftDown();
     }
 }

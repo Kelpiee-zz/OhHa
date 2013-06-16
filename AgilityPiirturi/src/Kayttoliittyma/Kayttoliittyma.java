@@ -32,7 +32,9 @@ public class Kayttoliittyma extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addMouseListener(kartta);
         addMouseMotionListener(kartta);
-
+        addKeyListener(kartta);
+        kartta.setFocusable(true);
+        
         BorderLayout layout = new BorderLayout();
         this.setLayout(layout);
         
