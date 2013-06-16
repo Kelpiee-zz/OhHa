@@ -14,7 +14,8 @@ import java.awt.geom.CubicCurve2D;
 import java.awt.image.BufferedImage;
 
 /**
- * Toinen varsinainen este, piiretään curvena
+ * Putkieste
+ * Perii GraafisenEsteen
  *
  * @author iitu
  */
@@ -25,9 +26,8 @@ public class Putki extends GraafinenEste {
     }
 
     /**
-     * Piirretään este ja myös käännetään sitä
-     * Kääntäminen testailua, varsinainen toiminto tulee muualle, jos saan toimimaan
-     * Rendering-osasto parantamaan kuvanlaatua, mutta ei toimi vielä
+     * Piirretään este Curvena
+     * 
      * @param g 
      */
     @Override
@@ -52,9 +52,8 @@ public class Putki extends GraafinenEste {
                 BasicStroke.JOIN_ROUND,
                 10.0f, null, 0.0f);
 
+        // Kuva käännetään ja siirretään koordinaateissa niin, että sitä voidaan raahata keskeltä estettä
         AffineTransform p = new AffineTransform();
-//        p.translate(this.getX(), this.getY());
-//        p.translate(-leveys / 2, -korkeus / 2);
 
         p.translate(koko / 2, koko / 2);
         p.rotate(Math.toRadians(this.getKulma()));
@@ -62,8 +61,6 @@ public class Putki extends GraafinenEste {
 
         AffineTransform t = new AffineTransform();
         t.translate(this.getX() - koko / 2, this.getY() - koko / 2);
-
-//        t.rotate(Math.toRadians(this.getKulma()));
 
         BufferedImage kuva = new BufferedImage(koko, koko, BufferedImage.TYPE_INT_ARGB);
         Graphics2D kuvaG = (Graphics2D) kuva.getGraphics();

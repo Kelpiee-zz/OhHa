@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package agilitypiirturi;
+package Agilitypiirturi;
 
 import java.util.ArrayList;
 
@@ -78,16 +78,23 @@ public class EsteKartta {
     public ArrayList<Este> getEsteet() {
         return esteet;
     }
-    
+    /**
+     * Poistetaan kaikki esteet ja nollataan viimeiseksi valittu este
+     */
     public void poistaKaikkiEsteet() {
         viimeisinValittu = null;
         esteet.removeAll(esteet);
     }
-    
+    /**
+     * Palautetaan viimeiseksi valittu este
+     * @return 
+     */
     public Este getViimeisinValittu() {
         return viimeisinValittu;
     }
-    
+    /**
+     * Nollataan valinta
+     */
     public void nollaaViimeisinValittu() {
         viimeisinValittu = null;
     }

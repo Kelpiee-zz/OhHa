@@ -1,6 +1,8 @@
+package Agilitypiirturi;
 
-import agilitypiirturi.Este;
-import agilitypiirturi.EsteKartta;
+
+import Agilitypiirturi.Este;
+import Agilitypiirturi.EsteKartta;
 import org.junit.Test;
 import static org.junit.Assert.*;
 /*

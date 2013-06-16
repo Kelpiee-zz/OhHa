@@ -41,7 +41,7 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
+        
         BufferedImage pohjaLayer = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
         BufferedImage esteLayer = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
@@ -75,8 +75,10 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
      */
     @Override
     public void mouseClicked(MouseEvent me) {
+        
         if (kartta.valitseGraafinenEste(me.getX(), me.getY()) == null) {
             GraafinenEste uusiEste = esteLuoja.luoEste(me.getX(), me.getY(), 0);
+
             kartta.lisaaEste(uusiEste);
         } else {
             GraafinenEste este = kartta.valitseGraafinenEste(me.getX(), me.getY());
@@ -102,6 +104,7 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
      */
     @Override
     public void mouseReleased(MouseEvent me) {
+        kartta.nollaaViimeisinValittu();
         this.repaint();
     }
 
@@ -112,9 +115,7 @@ public class KarttaPiirturi extends JPanel implements MouseListener, MouseMotion
      * @param me
      */
     @Override
-    public void mouseDragged(MouseEvent me) {
-        kartta.valitseEste(me.getX(), me.getY());
-        
+    public void mouseDragged(MouseEvent me) {        
         if (kartta.getViimeisinValittu() != null) {
             kartta.getViimeisinValittu().siirra(me.getX(), me.getY());
             

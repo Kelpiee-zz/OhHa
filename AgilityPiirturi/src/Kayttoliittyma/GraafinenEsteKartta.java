@@ -4,12 +4,13 @@
  */
 package Kayttoliittyma;
 
-import agilitypiirturi.Este;
-import agilitypiirturi.EsteKartta;
+import Agilitypiirturi.Este;
+import Agilitypiirturi.EsteKartta;
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
- * Perii Estekartan
+ * Perii EsteKartan
  * Huolehtii graafisten esteiden palauttamisesta
  * @author iitu
  */
@@ -45,12 +46,14 @@ public class GraafinenEsteKartta extends EsteKartta {
      * @return 
      */
     public GraafinenEste valitseGraafinenEste(int x, int y) {
-        return (GraafinenEste) super.valitseEste(x, y);
+         return (GraafinenEste) super.valitseEste(x, y);
     }
     
+    /**
+     * Poistetaan kaikki esteet
+     */
     public void poistaKaikkiGraafisetEsteet() {
         super.poistaKaikkiEsteet();
     }
-    
     
 }

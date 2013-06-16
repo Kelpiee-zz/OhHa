@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package agilitypiirturi;
+package Agilitypiirturi;
 
 /**
  * Yhden esteen ominaisuudet
@@ -36,9 +36,7 @@ public class Este {
     }
 
     /**
-     * Palauttaa kulman, jossa este sijaitsee kartalla. 0 vastaa kulmaa, jossa
-     * este sijaitsee Pohjois-Eteläsuunnassa. 90 vastaa kulmaa, jossa este
-     * sijaitsee Itä-Länsisuunnassa.
+     * Palauttaa kulman, jossa este sijaitsee kartalla.
      */
     public int getKulma() {
         return kulma;

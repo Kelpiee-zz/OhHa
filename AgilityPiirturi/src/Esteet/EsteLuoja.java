@@ -7,7 +7,8 @@ package Esteet;
 import Kayttoliittyma.GraafinenEste;
 
 /**
- * EsteLuoja pitää kirjaa valitun esteen tyypistä Oletuksena aita
+ * EsteLuoja pitää kirjaa valitun esteen tyypistä 
+ * Oletuksena aita
  *
  * @author iitu
  */

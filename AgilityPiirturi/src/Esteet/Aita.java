@@ -13,8 +13,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 /**
- * Ensimmäinen este, väri punainen
- * Myös oletuksena ensimmäisenä (ks. KarttaPiirturi)
+ * Aita, joka oletuksena ensimmäinen este
  * Perii GraafisenEsteen
  * @author iitu
  */
@@ -26,20 +25,18 @@ public class Aita extends GraafinenEste {
     
     /**
      * Piirtää aita-esteiksi suorakulmioita
-     * t.translate:n avulla esteitä voi kääntää. Tämä ominaisuus hyvin kesken
-     * Rendering-osasto parantamaan kuvan laatua, mutta siinä myös vielä ongelmia
+     * t.translate:n avulla esteitä voi kääntää
      * @param g 
      * 
      */
     @Override
     public void draw(Graphics2D g) {
-        int x = this.getX();
-        int y = this.getY();
         int aidanLeveys = 35;
         int aidanKorkeus = 3;
         
         int kuvanKoko = 100;
         
+        // Kuva käännetään ja siirretään koordinaateissa niin, että sitä voidaan raahata keskeltä estettä
         AffineTransform p = new AffineTransform();
         p.translate(kuvanKoko/2.0, kuvanKoko/2.0);
         p.rotate(Math.toRadians(this.getKulma()));
@@ -53,7 +50,7 @@ public class Aita extends GraafinenEste {
         
         kuvaG.setTransform(p);
         kuvaG.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        kuvaG.setColor(Color.black);
+        kuvaG.setColor(Color.BLACK);
         kuvaG.fillRect(0, 0, aidanLeveys, aidanKorkeus);
 
         g.drawImage(kuva, t, null);

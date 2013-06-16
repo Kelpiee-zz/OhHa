@@ -12,22 +12,15 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 /**
- * Muodostetaan nappuloiden Layout
+ * Muodostetaan nappuloiden layout
  *
  * @author iitu
  */
 public class Nappuloita {
 
-    public static final Color BLUE_VVD = new Color(18, 85, 107);
     public static final Color BLUE_VD = new Color(38, 107, 137);
-    public static final Color BLUE_D = new Color(85, 157, 188);
-    public static final Color BLUE_DA = new Color(85, 157, 188, 200);
     public static final Color BLUE_M = new Color(131, 195, 222);
-    public static final Color BLUE_MA = new Color(131, 195, 222, 200);
     public static final Color BLUE_L = new Color(156, 202, 222);
-    public static final Color BLUE_LA = new Color(156, 202, 222, 200);
-    public static final Color BLUE_VL = new Color(191, 223, 233);
-    public static final Color BLUE_VLA = new Color(191, 213, 233, 200);
     public static final Border etchedBorder = BorderFactory.createEtchedBorder(Nappuloita.BLUE_M, Nappuloita.BLUE_VD);
     public static final Border BUTTON_BORDER = new LineBorder(Nappuloita.BLUE_VD, 1, false);
 
