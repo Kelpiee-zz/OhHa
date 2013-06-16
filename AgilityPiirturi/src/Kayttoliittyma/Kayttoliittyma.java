@@ -42,6 +42,5 @@ public class Kayttoliittyma extends JFrame {
         pack();
         setSize(700, 500);
         setVisible(true);
-        this.setLocation(210, 0);
     }
 }
